@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IceBox — Inventaire du congèle</title>
+  <link rel="manifest" href="/IceBox/manifest.webmanifest" />
+  <link rel="stylesheet" href="/IceBox/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L15 8l6 1-4.5 3.5L18 21l-6-3.5L6 21l1.5-8.5L3 9l6-1 3-6z"/></svg>
+      <h1>IceBox</h1>
+    </div>
+    <button id="btn-add-cat" class="icon-btn">+</button>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <input id="search" placeholder="Recherche globale (ex: poulet, glace...)" />
+      <div class="form-row">
+        <input id="item-name" placeholder="Nom du produit" />
+        <input id="item-qty" type="number" min="0" value="1" />
+        <select id="category-select"></select>
+        <button id="btn-add-item">Ajouter</button>
+      </div>
+    </section>
+
+    <section class="categories" id="categories"></section>
+
+    <section id="items-list" class="items-list"></section>
+  </main>
+
+  <!-- modale simple pour créer catégorie -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <h3>Nouvelle catégorie</h3>
+      <input id="new-cat-name" placeholder="Nom catégorie (ex: Viande)" />
+      <div class="modal-actions">
+        <button id="modal-cancel" class="btn-link">Annuler</button>
+        <button id="modal-save" class="btn-primary">Créer</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/IceBox/src/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/IceBox/service-worker.js').catch(()=>{});
+    }
+  </script>
+</body>
+</html>
